@@ -18,24 +18,22 @@ def solution_1(a):
 
     return result
 
-#TODO:O(n) without division
-'''
+#O(n) without division
 def solution_2(a):
-    left = [1] * (len(a))
-    right = [1] * (len(a))
+    left = [1] * (len(a)) #array to accumulate multiplication for elements on the left of index i
+    right = [1] * (len(a)) #array to accumulate multiplication for elements on the right of index i
     result = []
 
-    print(left)
-    print(right)
     for i in range(1, len(a)):
         left[i] = a[i - 1] * left[i - 1]
-        print(i, left[i])
     
-    print ("----------------------------")
-    for i in range(len(a) - 2, 0, -1):
+    for i in range(len(a) - 2, -1, -1):
         right[i] = a[i + 1] * right[i + 1]
-        print(i, right[i])
 
-'''
+    for i in range(len(a)):
+        result.append(left[i] * right[i])
+    
+    return result
+
 a = [1, 2, 3, 4, 5]
-print(solution_1(a))
+print(solution_2(a))
